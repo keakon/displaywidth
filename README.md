@@ -10,7 +10,7 @@ This fork preserves grapheme clusters while accounting for spacing marks (includ
 
 ## Install
 ```bash
-go get github.com/keakon/displaywidth
+go get github.com/keakon/displaywidth@v0.11.0-fork.1
 ```
 
 ## Usage
