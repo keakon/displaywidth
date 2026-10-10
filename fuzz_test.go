@@ -6,7 +6,7 @@ import (
 	"testing"
 	"unicode/utf8"
 
-	"github.com/clipperhouse/displaywidth/testdata"
+	"github.com/keakon/displaywidth/testdata"
 )
 
 // FuzzBytesAndString fuzzes the Bytes function with valid and invalid UTF-8.

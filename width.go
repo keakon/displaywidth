@@ -190,7 +190,7 @@ func graphemeWidth[T ~string | ~[]byte](s T, options Options) int {
 		return 2
 	}
 
-	return 1
+	return spacingMarkWidth(s, sz)
 }
 
 func asciiWidth(b byte) int {

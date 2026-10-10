@@ -9,7 +9,7 @@ import (
 	"os"
 	"unicode"
 
-	"github.com/clipperhouse/displaywidth/internal/gen/triegen"
+	"github.com/keakon/displaywidth/internal/gen/triegen"
 )
 
 // GenerateTrie creates a compressed trie from Unicode data using triegen

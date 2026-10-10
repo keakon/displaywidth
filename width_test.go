@@ -1679,14 +1679,14 @@ func TestUnicode16IndicConjunctBreak(t *testing.T) {
 		{
 			name:             "Devanagari word with conjuncts",
 			input:            "क्षत्रिय", // kṣatriya - contains conjunct क्ष
-			expectedWidth:    3,          // 3 grapheme clusters × 1 width each
+			expectedWidth:    4,          // Includes spacing components within clusters.
 			expectedClusters: 3,          // क्ष, त्रि, य
 			description:      "Devanagari word with multiple conjuncts",
 		},
 		{
 			name:             "Devanagari with repha",
 			input:            "राम", // rāma - र (ra) can form repha in some contexts
-			expectedWidth:    2,     // 2 grapheme clusters × 1 width each
+			expectedWidth:    3,     // Includes spacing components within clusters.
 			expectedClusters: 2,     // रा, म
 			description:      "Devanagari with potential repha formation",
 		},
@@ -1711,7 +1711,7 @@ func TestUnicode16IndicConjunctBreak(t *testing.T) {
 		{
 			name:             "Bengali word",
 			input:            "বাংলা", // bāṅlā - Bengali
-			expectedWidth:    2,       // 2 grapheme clusters × 1 width each
+			expectedWidth:    4,       // Includes spacing components within clusters.
 			expectedClusters: 2,       // বাং, লা
 			description:      "Bengali word with conjuncts",
 		},
@@ -1730,7 +1730,7 @@ func TestUnicode16IndicConjunctBreak(t *testing.T) {
 		{
 			name:             "Tamil word",
 			input:            "தமிழ்", // tamiḻ - Tamil
-			expectedWidth:    3,       // 3 grapheme clusters × 1 width each
+			expectedWidth:    4,       // Includes spacing components within clusters.
 			expectedClusters: 3,       // த, மி, ழ்
 			description:      "Tamil word",
 		},
@@ -1747,7 +1747,7 @@ func TestUnicode16IndicConjunctBreak(t *testing.T) {
 		{
 			name:             "Telugu word",
 			input:            "తెలుగు", // telugu
-			expectedWidth:    3,        // 3 grapheme clusters × 1 width each
+			expectedWidth:    5,        // Includes spacing components within clusters.
 			expectedClusters: 3,        // తె, లు, గు
 			description:      "Telugu word",
 		},
@@ -1764,7 +1764,7 @@ func TestUnicode16IndicConjunctBreak(t *testing.T) {
 		{
 			name:             "Gujarati word",
 			input:            "ગુજરાતી", // gujarātī
-			expectedWidth:    4,         // 4 grapheme clusters × 1 width each
+			expectedWidth:    6,         // Includes spacing components within clusters.
 			expectedClusters: 4,         // ગુ, જ, રા, તી
 			description:      "Gujarati word",
 		},
@@ -1799,7 +1799,7 @@ func TestUnicode16IndicConjunctBreak(t *testing.T) {
 		{
 			name:             "Malayalam word",
 			input:            "മലയാളം", // malayāḷaṁ
-			expectedWidth:    4,        // 4 grapheme clusters × 1 width each
+			expectedWidth:    6,        // Includes spacing components within clusters.
 			expectedClusters: 4,        // മ, ല, യാ, ളം
 			description:      "Malayalam word",
 		},
@@ -1808,7 +1808,7 @@ func TestUnicode16IndicConjunctBreak(t *testing.T) {
 		{
 			name:             "Mixed Indic scripts",
 			input:            "क्ष বাংলা தமிழ்", // Devanagari + Bengali + Tamil
-			expectedWidth:    8,                 // 1 + space + 2 + space + 3
+			expectedWidth:    11,                // Includes spacing components within clusters.
 			expectedClusters: 8,                 // क्ष, space, বাং, লা, space, த, மி, ழ்
 			description:      "Mixed Indic scripts with spaces",
 		},
@@ -1827,7 +1827,7 @@ func TestUnicode16IndicConjunctBreak(t *testing.T) {
 		{
 			name:                   "Devanagari with vowel sign",
 			input:                  "का", // kā - क (ka) + ा (ā vowel sign)
-			expectedWidth:          1,
+			expectedWidth:          2,    // Includes spacing components within clusters.
 			expectedClusters:       1,
 			description:            "Devanagari with combining vowel sign - should be single cluster",
 			verifyClusterFormation: true,
@@ -1835,7 +1835,7 @@ func TestUnicode16IndicConjunctBreak(t *testing.T) {
 		{
 			name:                   "Bengali with vowel sign",
 			input:                  "কা", // kā - ক (ka) + া (ā vowel sign)
-			expectedWidth:          1,
+			expectedWidth:          2,    // Includes spacing components within clusters.
 			expectedClusters:       1,
 			description:            "Bengali with combining vowel sign - should be single cluster",
 			verifyClusterFormation: true,

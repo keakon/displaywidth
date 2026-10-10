@@ -22,6 +22,7 @@ type UnicodeData struct {
 	RegionalIndicator    map[rune]bool   // From emoji-data.txt (Regional Indicator symbols, range 1F1E6..1F1FF)
 	ControlChars         map[rune]bool   // From Go stdlib
 	CombiningMarks       map[rune]bool   // From Go stdlib (Mn, Me only - Mc excluded for proper width)
+	SpacingMarks         map[rune]bool   // Spacing components within grapheme clusters
 	ZeroWidthChars       map[rune]bool   // Special zero-width characters
 }
 
@@ -41,6 +42,7 @@ var PropertyDefinitions = []PropertyDefinition{
 	{"Wide", "Always 2 wide (East Asian Wide F/W, Emoji, Regional Indicator)"},
 	{"East_Asian_Ambiguous", "Width depends on EastAsianWidth option"},
 	{"VS16_Eligible", "Default width 1, but FE0F (VS16) requests emoji presentation (width 2)"},
+	{"Spacing_Mark", "Spacing component that widens a narrow grapheme cluster"},
 }
 
 // these constants are used to build the property bitmap, internally.
@@ -54,6 +56,7 @@ const (
 	east_Asian_Ambiguous
 	// Valid base for emoji variation sequence with VS16 (FE0F)
 	vs16_Eligible
+	spacing_Mark
 )
 
 // ParseUnicodeData downloads and parses all required Unicode data files
@@ -67,6 +70,7 @@ func ParseUnicodeData() (*UnicodeData, error) {
 		ControlChars:         make(map[rune]bool),
 		CombiningMarks:       make(map[rune]bool),
 		ZeroWidthChars:       make(map[rune]bool),
+		SpacingMarks:         make(map[rune]bool),
 	}
 
 	const unicodeVersion = "17.0.0"
@@ -360,6 +364,10 @@ func extractStdlibData(data *UnicodeData) {
 	// Note: Mc (Spacing Mark) characters are excluded so they get default width 1
 	extractRunesFromRangeTable(unicode.Mn, data.CombiningMarks)
 	extractRunesFromRangeTable(unicode.Me, data.CombiningMarks)
+	extractRunesFromRangeTable(unicode.Mc, data.SpacingMarks)
+	// Thai and Lao SARA AM have GCB=SpacingMark but category Lo.
+	data.SpacingMarks[0x0E33] = true
+	data.SpacingMarks[0x0EB3] = true
 
 	// Cf (Other, format) is the official Unicode category for format characters
 	// which are generally invisible and have zero width.
@@ -397,6 +405,9 @@ func extractRunesFromRangeTable(table *unicode.RangeTable, target map[rune]bool)
 
 func buildPropertyBitmap(r rune, data *UnicodeData) property {
 	var props property
+	if data.SpacingMarks[r] {
+		props |= spacing_Mark
+	}
 
 	if data.CombiningMarks[r] {
 		return zero_Width

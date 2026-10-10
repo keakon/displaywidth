@@ -4,7 +4,7 @@
 
 This document summarizes the compatibility findings between three Go libraries for Unicode string width calculation:
 
-- [clipperhouse/displaywidth](https://github.com/clipperhouse/displaywidth) (this package)
+- [clipperhouse/displaywidth](https://github.com/keakon/displaywidth) (this package)
 - [mattn/go-runewidth](https://github.com/mattn/go-runewidth)
 - [rivo/uniseg](https://github.com/rivo/uniseg)
 

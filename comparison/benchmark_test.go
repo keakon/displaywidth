@@ -4,8 +4,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/clipperhouse/displaywidth"
-	"github.com/clipperhouse/displaywidth/testdata"
+	"github.com/keakon/displaywidth"
+	"github.com/keakon/displaywidth/testdata"
 	"github.com/mattn/go-runewidth"
 	"github.com/rivo/uniseg"
 )

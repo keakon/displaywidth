@@ -6,7 +6,7 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/clipperhouse/displaywidth"
+	"github.com/keakon/displaywidth"
 )
 
 func main() {

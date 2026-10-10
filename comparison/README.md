@@ -16,7 +16,7 @@ go test -bench=. -benchmem
 ```
 goos: darwin
 goarch: arm64
-pkg: github.com/clipperhouse/displaywidth/comparison
+pkg: github.com/keakon/displaywidth/comparison
 cpu: Apple M2
 
 BenchmarkString_Mixed/clipperhouse/displaywidth-8                 6085 ns/op         277.23 MB/s           0 B/op          0 allocs/op

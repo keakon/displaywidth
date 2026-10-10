@@ -3,7 +3,7 @@ package comparison
 import (
 	"testing"
 
-	"github.com/clipperhouse/displaywidth"
+	"github.com/keakon/displaywidth"
 	"github.com/mattn/go-runewidth"
 	"github.com/rivo/uniseg"
 )

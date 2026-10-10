@@ -1,4 +1,4 @@
-module github.com/clipperhouse/displaywidth
+module github.com/keakon/displaywidth
 
 go 1.18
 

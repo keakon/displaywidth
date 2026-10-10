@@ -2,13 +2,15 @@
 
 A high-performance Go package for measuring the monospace display width of strings, UTF-8 bytes, and runes.
 
-[![Documentation](https://pkg.go.dev/badge/github.com/clipperhouse/displaywidth.svg)](https://pkg.go.dev/github.com/clipperhouse/displaywidth)
-[![Test](https://github.com/clipperhouse/displaywidth/actions/workflows/gotest.yml/badge.svg)](https://github.com/clipperhouse/displaywidth/actions/workflows/gotest.yml)
-[![Fuzz](https://github.com/clipperhouse/displaywidth/actions/workflows/gofuzz.yml/badge.svg)](https://github.com/clipperhouse/displaywidth/actions/workflows/gofuzz.yml)
+[![Documentation](https://pkg.go.dev/badge/github.com/keakon/displaywidth.svg)](https://pkg.go.dev/github.com/keakon/displaywidth)
+[![Test](https://github.com/keakon/displaywidth/actions/workflows/gotest.yml/badge.svg)](https://github.com/keakon/displaywidth/actions/workflows/gotest.yml)
+[![Fuzz](https://github.com/keakon/displaywidth/actions/workflows/gofuzz.yml/badge.svg)](https://github.com/keakon/displaywidth/actions/workflows/gofuzz.yml)
+
+This fork preserves grapheme clusters while accounting for spacing marks (including Thai/Lao SARA AM) that expand narrow terminal cells to two columns. Multiple spacing marks in one cluster remain two columns. Nonspacing marks and joined emoji modifiers retain their existing widths. Terminal width policies differ; this does not claim identical rendering in legacy or non-grapheme terminals.
 
 ## Install
 ```bash
-go get github.com/clipperhouse/displaywidth
+go get github.com/keakon/displaywidth
 ```
 
 ## Usage
@@ -18,7 +20,7 @@ package main
 
 import (
     "fmt"
-    "github.com/clipperhouse/displaywidth"
+    "github.com/keakon/displaywidth"
 )
 
 func main() {
@@ -46,7 +48,7 @@ If you need the individual graphemes:
 ```go
 import (
     "fmt"
-    "github.com/clipperhouse/displaywidth"
+    "github.com/keakon/displaywidth"
 )
 
 func main() {
@@ -149,7 +151,7 @@ go test -bench=. -benchmem
 ```
 goos: darwin
 goarch: arm64
-pkg: github.com/clipperhouse/displaywidth/comparison
+pkg: github.com/keakon/displaywidth/comparison
 cpu: Apple M2
 
 BenchmarkString_Mixed/clipperhouse/displaywidth-8                 6085 ns/op         277.23 MB/s           0 B/op          0 allocs/op
